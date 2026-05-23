@@ -24,10 +24,15 @@ app.get('/organizations', async (req, res) => {
     res.render('organizations.ejs', { title });
 });
 
-app.get('/projects', async (req, res) => {
-    const title = 'Service Projects';
-    res.render('projects.ejs', { title });
-});
+    app.get('/projects', async (req, res) => {
+        const title = 'Service Projects';
+        res.render('projects.ejs', { title });
+    });
+    
+    app.get('/categories', async (req, res) => {
+        const title = 'Service Categories';
+        res.render('categories.ejs', { title });
+    });
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://127.0.0.1:${PORT}`);
