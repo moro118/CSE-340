@@ -5,6 +5,15 @@
         <p class="project-org">
             Organized by: <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
         </p>
+
+        <% if (categories && categories.length > 0) { %>
+            <div class="project-tags" style="margin-bottom: 20px;">
+                <% categories.forEach(category => { %>
+                    <a href="/category/<%= category.category_id %>" class="project-badge" style="display: inline-block; padding: 5px 10px; margin-right: 8px; border-radius: 4px; text-decoration: none; font-size: 0.9em; background-color: #f1f3f5; color: #495057; border: 1px solid #dee2e6;"><%= category.name %></a>
+                <% }) %>
+            </div>
+        <% } %>
+
         <p class="project-description"><%= project.description %></p>
         <div class="project-meta-details">
             <p>📍 <strong>Location:</strong> <%= project.location %></p>

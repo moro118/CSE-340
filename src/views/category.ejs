@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<main>
+    <section class="category-details">
+        <h1><%= title %> Service Opportunities</h1>
+        <p>Explore service learning and volunteer opportunities within the <strong><%= category.name %></strong> category.</p>
+
+        <% if (projects.length === 0) { %>
+            <p>No active projects found for this category at the moment. Please check back later!</p>
+        <% } else { %>
+            <ul class="projects-list">
+                <% projects.forEach(project => { %>
+                    <li>
+                        <h3><a href="/project/<%= project.project_id %>"><%= project.title %></a></h3>
+                        <p class="org-name">organized by <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a></p>
+                        <p><%= project.description %></p>
+                        <p>📍 <%= project.location %> | 📅 <%= new Date(project.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+        
+        <br>
+        <a href="/categories" class="btn btn-secondary">Back to Categories</a>
+    </section>
+</main>
+<%- include('partials/footer') %>

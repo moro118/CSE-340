@@ -8,8 +8,8 @@
     <div class="categories-grid">
         <% categories.forEach(category => { %>
             <div class="category-card">
-                <h3><%= category.name %></h3>
-                <a href="/projects" class="btn-card">View Projects</a>
+                <h3><a href="/category/<%= category.category_id %>"><%= category.name %></a></h3>
+                <a href="/category/<%= category.category_id %>" class="btn-card">View Projects</a>
             </div>
         <% }); %>
     </div>
