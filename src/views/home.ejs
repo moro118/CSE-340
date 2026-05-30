@@ -1,6 +1,35 @@
 <%- include('partials/header') %>
 <main>
-    <h1><%= title %></h1>
-    <!-- Put your page-specific content here -->
+    <section class="hero">
+        <h1><%= title %></h1>
+        <p class="hero-tagline">Connecting students, organizers, and communities to foster meaningful local impact.</p>
+    </section>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-icon">🤝</div>
+            <h3>Connect</h3>
+            <p>Bridge the gap between talented individuals and verified local partner organizations needing support.</p>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">🌱</div>
+            <h3>Grow</h3>
+            <p>Develop leadership, teamwork, and problem-solving skills through hands-on service learning experiences.</p>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">⭐</div>
+            <h3>Sustain</h3>
+            <p>Make a lasting contribution to environmental, educational, health, and community initiatives.</p>
+        </div>
+    </div>
+
+    <section class="welcome-details">
+        <h2>About the CSE 340 Service Network</h2>
+        <p>Welcome to our central platform designed to facilitate and organize community service projects. We partner with dedicated non-profits and community groups to provide high-quality service learning opportunities. Explore our partners, filter through categories, and discover projects where you can make a real difference today.</p>
+        <div class="action-buttons">
+            <a href="/projects" class="btn btn-primary">Browse Projects</a>
+            <a href="/organizations" class="btn btn-secondary">Our Partners</a>
+        </div>
+    </section>
 </main>
 <%- include('partials/footer') %>

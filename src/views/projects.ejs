@@ -1,6 +1,58 @@
 <%- include('partials/header') %>
 <main>
-    <h1><%= title %></h1>
-    <!-- Put your page-specific content here -->
+    <section class="page-intro">
+        <h1><%= title %></h1>
+        <p>Explore current volunteer-led community initiatives and service learning projects available for enrollment.</p>
+    </section>
+
+    <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-badge environmental">Environmental</div>
+            <h3>Community Reforestation</h3>
+            <p class="org-name">by Green Harvest</p>
+            <p class="project-description">Help plant native saplings and restore the green canopy in city parks to improve air quality and enhance local biodiversity.</p>
+            <div class="project-meta">
+                <span>📍 Central Park</span>
+                <span>📅 Saturdays</span>
+            </div>
+            <a href="#" class="btn-card">Learn More</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-badge educational">Educational</div>
+            <h3>After-School Math Tutoring</h3>
+            <p class="org-name">by Bright Future</p>
+            <p class="project-description">Provide targeted homework assistance and support mathematical concept building for middle-school students.</p>
+            <div class="project-meta">
+                <span>📍 Community Center</span>
+                <span>📅 Mon & Wed</span>
+            </div>
+            <a href="#" class="btn-card">Learn More</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-badge community">Community Service</div>
+            <h3>Neighborhood Food Drive</h3>
+            <p class="org-name">by Unity Serve</p>
+            <p class="project-description">Organize, sort, and distribute nutritious pantry staples and fresh produce to vulnerable families in the local area.</p>
+            <div class="project-meta">
+                <span>📍 East Side Depot</span>
+                <span>📅 Thursdays</span>
+            </div>
+            <a href="#" class="btn-card">Learn More</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-badge health">Health & Wellness</div>
+            <h3>Senior Mobility Companionship</h3>
+            <p class="org-name">by CSE 340 Service Network</p>
+            <p class="project-description">Lead gentle stretching exercises, walking clubs, and offer friendly companionship to residents at the local retirement home.</p>
+            <div class="project-meta">
+                <span>📍 Silver Pines Home</span>
+                <span>📅 Fri Mornings</span>
+            </div>
+            <a href="#" class="btn-card">Learn More</a>
+        </div>
+    </div>
 </main>
 <%- include('partials/footer') %>
