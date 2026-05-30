@@ -1,20 +1,32 @@
-import express from "express";
+import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { testConnection } from "./src/models/db.js";
-import { getAllOrganizations } from "./src/models/organizations.js";
-import { getAllCategories } from "./src/models/categories.js";
+import { testConnection } from './src/models/db.js';
+import router from './src/routes.js';
 
-const NODE_ENV = process.env.NODE_ENV || "production";
+// Define the application environment
+const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
+
+// Define the port number the server will listen on
 const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+/**
+  * Configure Express middleware
+  */
+
+// Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Set EJS as the templating engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src', 'views'));
+
+// Tell Express where to find your templates
+app.set('views', path.join(__dirname, 'src/views'));
 
 // Middleware to log all incoming requests
 app.use((req, res, next) => {
@@ -30,38 +42,8 @@ app.use((req, res, next) => {
     next();
 });
 
-/**
- * Routes
- */
-app.get('/', async (req, res) => {
-    const title = 'Home';
-    res.render('home.ejs', { title });
-});
-
-app.get('/organizations', async (req, res) => {
-    const organizations = await getAllOrganizations();
-    const title = 'Our Partner Organizations';
-
-    res.render('organizations', { title, organizations });
-});
-
-app.get('/projects', async (req, res) => {
-    const title = 'Service Projects';
-    res.render('projects.ejs', { title });
-});
-
-app.get('/categories', async (req, res) => {
-    const categories = await getAllCategories();
-    const title = 'Service Categories';
-    res.render('categories', { title, categories });
-});
-
-// Test route for 500 errors
-app.get('/test-error', (req, res, next) => {
-    const err = new Error('This is a test error');
-    err.status = 500;
-    next(err);
-});
+// Use the imported router to handle routes
+app.use(router);
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {
@@ -92,13 +74,11 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, async () => {
-    try {
-        await testConnection();
-        console.log(`Server is running at http://127.0.0.1:${PORT}`);
-        console.log(`Environment: ${NODE_ENV}`);
-    } catch (error) {
-        console.error('Error connecting to the database:', error);
-    }
+  try {
+    await testConnection();
+    console.log(`Server is running at http://127.0.0.1:${PORT}`);
+    console.log(`Environment: ${NODE_ENV}`);
+  } catch (error) {
+    console.error('Error connecting to the database:', error);
+  }
 });
-
-
