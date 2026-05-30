@@ -47,39 +47,39 @@ CREATE TABLE projects (
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     location VARCHAR(255) NOT NULL,
-    schedule VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
     organization_id INT REFERENCES organizations(organization_id) ON DELETE CASCADE
 );
 
 -- Insert projects
-INSERT INTO projects (title, description, location, schedule, organization_id)
+INSERT INTO projects (title, description, location, date, organization_id)
 VALUES
 (
     'Community Reforestation',
     'Help plant native saplings and restore the green canopy in city parks to improve air quality and enhance local biodiversity.',
     'Central Park',
-    'Saturdays',
+    '2026-06-06',
     2
 ),
 (
     'After-School Math Tutoring',
     'Provide targeted homework assistance and support mathematical concept building for middle-school students.',
     'Community Center',
-    'Mon & Wed',
+    '2026-06-08',
     1
 ),
 (
     'Neighborhood Food Drive',
     'Organize, sort, and distribute nutritious pantry staples and fresh produce to vulnerable families in the local area.',
     'East Side Depot',
-    'Thursdays',
+    '2026-06-11',
     3
 ),
 (
     'Senior Mobility Companionship',
     'Lead gentle stretching exercises, walking clubs, and offer friendly companionship to residents at the local retirement home.',
     'Silver Pines Home',
-    'Fri Mornings',
+    '2026-06-12',
     4
 );
 

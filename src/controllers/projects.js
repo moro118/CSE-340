@@ -1,13 +1,37 @@
-// Import any needed model functions
-import { getAllProjects } from '../models/projects.js';
+// Import the needed model functions
+import { getUpcomingProjects, getProjectDetails } from '../models/projects.js';
 
-// Define any controller functions
-const showProjectsPage = async (req, res) => {
-    const projects = await getAllProjects();
-    const title = 'Service Projects';
+const NUMBER_OF_UPCOMING_PROJECTS = 5;
 
-    res.render('projects', { title, projects });
-};  
+// Define controller functions
+const showProjectsPage = async (req, res, next) => {
+    try {
+        const projects = await getUpcomingProjects(NUMBER_OF_UPCOMING_PROJECTS);
+        const title = 'Upcoming Service Projects';
+
+        res.render('projects', { title, projects });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const showProjectDetailsPage = async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const project = await getProjectDetails(projectId);
+        
+        if (!project) {
+            const err = new Error('Project Not Found');
+            err.status = 404;
+            return next(err);
+        }
+
+        const title = project.title;
+        res.render('project', { title, project });
+    } catch (error) {
+        next(error);
+    }
+};
 
 // Export any controller functions
-export { showProjectsPage };
+export { showProjectsPage, showProjectDetailsPage };
