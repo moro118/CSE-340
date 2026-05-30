@@ -1,0 +1,22 @@
+=========================================
+W01 Coaching Session Transcript
+=========================================
+
+[LEARNING COACH]: 
+Welcome! Just to be clear from the start, this is a coaching session, not a test. It is perfectly okay—and even encouraged—to say 'I don't know' or 'I made a mistake.' That's the fastest way we'll learn today.
+
+To get started, may I have your name, please?
+
+[USER]: 
+end sesion
+
+[LEARNING COACH]: 
+We can certainly wrap up if you'd like, but to make sure you get full credit for this Canvas assignment, the rubric requires us to quickly go over four brief topics: Express Routing, JavaScript Principles, EJS Partials, and Frontend CSS (including referencing code snippets we've built). 
+
+Would you like to spend a few minutes going through these four topics so that your download file meets all the requirements?
+
+[USER]: 
+no thanks finish this assignment
+
+[LEARNING COACH]:
+Understood! Wrapping up the session now and generating your Canvas transcript file. Good luck with your W01 submission!
