@@ -6,33 +6,12 @@
     </section>
 
     <div class="categories-grid">
-        <div class="category-card environmental">
-            <div class="category-icon">🌲</div>
-            <h3>Environmental</h3>
-            <p>Focus on ecology, conservation, community gardens, cleanup campaigns, and preserving local wildlife habitats.</p>
-            <a href="/projects" class="btn-card">View Projects</a>
-        </div>
-
-        <div class="category-card educational">
-            <div class="category-icon">📚</div>
-            <h3>Educational</h3>
-            <p>Engage in tutoring, literacy programs, STEM workshops, and school mentorship to empower local youth.</p>
-            <a href="/projects" class="btn-card">View Projects</a>
-        </div>
-
-        <div class="category-card community">
-            <div class="category-icon">🏡</div>
-            <h3>Community Service</h3>
-            <p>Support neighborhood builds, hunger relief programs, clothing drives, and social welfare projects.</p>
-            <a href="/projects" class="btn-card">View Projects</a>
-        </div>
-
-        <div class="category-card health">
-            <div class="category-icon">🏥</div>
-            <h3>Health and Wellness</h3>
-            <p>Contribute to eldercare, physical fitness drives, mental health support groups, and clinical assistance programs.</p>
-            <a href="/projects" class="btn-card">View Projects</a>
-        </div>
+        <% categories.forEach(category => { %>
+            <div class="category-card">
+                <h3><%= category.name %></h3>
+                <a href="/projects" class="btn-card">View Projects</a>
+            </div>
+        <% }); %>
     </div>
 </main>
 <%- include('partials/footer') %>
