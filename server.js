@@ -5,6 +5,7 @@ import { testConnection } from './src/models/db.js';
 import router from './src/routes.js';
 import session from 'express-session';
 import flash from './src/middleware/flash.js';
+import { setUserContext } from './src/middleware/auth.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -34,9 +35,13 @@ app.use(session({
 // Use flash message middleware
 app.use(flash);
 
+// Make user session globally available to templates
+app.use(setUserContext);
+
 // Allow Express to receive and process common POST data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));

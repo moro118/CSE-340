@@ -14,8 +14,12 @@
             </div>
         <% } %>
 
-        <p><a href="/assign-categories/<%= project.project_id %>">Edit Categories</a></p>
-        <p><a href="/edit-project/<%= project.project_id %>">Edit Project Details</a></p>
+        <% if (user && user.role === 'admin') { %>
+            <div class="action-buttons-group" style="margin-bottom: 2rem; display: flex; gap: 0.75rem;">
+                <a href="/assign-categories/<%= project.project_id %>" class="btn btn-secondary">Edit Categories</a>
+                <a href="/edit-project/<%= project.project_id %>" class="btn btn-primary">Edit Project Details</a>
+            </div>
+        <% } %>
 
         <p class="project-description"><%= project.description %></p>
         <div class="project-meta-details">

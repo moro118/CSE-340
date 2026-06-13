@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+<main>
+    <section class="form-container">
+        <h1>Register New Account</h1>
+        <p>Fill out the form below to create your volunteer account.</p>
+
+        <form action="/register" method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="First Name" value="<%= locals.firstName || '' %>">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Last Name" value="<%= locals.lastName || '' %>">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="name@example.com" value="<%= locals.email || '' %>">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Minimum 6 characters, alphanumeric">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </div>
+        </form>
+
+        <p class="auth-helper">Already have an account? <a href="/login">Log in here</a></p>
+    </section>
+</main>
+<%- include('../partials/footer') %>

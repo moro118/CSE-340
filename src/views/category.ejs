@@ -18,7 +18,9 @@
                 <% }) %>
             </ul>
         <% } %>
-        <p><a href="/edit-category/<%= category.category_id %>">Edit Category</a></p>
+        <% if (user && user.role === 'admin') { %>
+            <p><a href="/edit-category/<%= category.category_id %>" class="btn btn-secondary" style="margin-top: 1rem;">Edit Category</a></p>
+        <% } %>
 
         <br>
         <a href="/categories" class="btn btn-secondary">Back to Categories</a>

@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+<main>
+    <section class="page-intro">
+        <h1><%= title %></h1>
+        <p>This list contains all registered user profiles within the system. Access is strictly restricted to Administrator roles.</p>
+    </section>
+
+    <div class="table-responsive">
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Email (Username)</th>
+                    <th>Access Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(u => { %>
+                    <tr>
+                        <td><%= u.user_id %></td>
+                        <td><%= u.first_name %> <%= u.last_name %></td>
+                        <td><%= u.email %></td>
+                        <td><span class="badge role-<%= u.role %>"><%= u.role %></span></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="action-buttons" style="margin-top: 2rem;">
+        <a href="/dashboard" class="btn btn-secondary">&larr; Back to Dashboard</a>
+    </div>
+</main>
+<%- include('../partials/footer') %>

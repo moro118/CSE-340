@@ -579,3 +579,167 @@ button:focus-visible {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+/* ==========================================================================
+   Authentication & User Management Page Styles
+   ========================================================================== */
+
+/* Forms Layout styling */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--bg-white);
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid #e2e8f0;
+}
+
+.auth-form {
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-light);
+}
+
+.form-group input {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.form-actions button {
+    width: 100%;
+}
+
+.auth-helper {
+    margin-top: 1.5rem;
+    font-size: 0.925rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.auth-helper a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-helper a:hover {
+    text-decoration: underline;
+}
+
+/* User Dashboard styling */
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dashboard-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+
+.user-details-card,
+.admin-panel-card {
+    background-color: var(--bg-white);
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.user-details-card p {
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+.admin-panel-card {
+    border-left: 5px solid var(--accent);
+}
+
+/* User List Table styling */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 2rem;
+    background-color: var(--bg-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.users-table th,
+.users-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table th {
+    background-color: #f1f5f9;
+    color: var(--primary-light);
+    font-weight: 700;
+}
+
+.users-table tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table tr:hover td {
+    background-color: #f8fafc;
+}
+
+/* Badges styling */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge.role-admin {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+.badge.role-user {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+

@@ -7,7 +7,9 @@
 
     <p>Description: <%= organizationDetails.description %></p>
 
-    <p><a href="/edit-organization/<%= organizationDetails.organization_id %>">Edit Organization</a></p>
+    <% if (user && user.role === 'admin') { %>
+        <p><a href="/edit-organization/<%= organizationDetails.organization_id %>" class="btn btn-secondary" style="margin-top: 1rem;">Edit Organization</a></p>
+    <% } %>
 
     <h3>Service Projects</h3>
     <ul>

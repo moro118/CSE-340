@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<main>
+    <section class="dashboard-container">
+        <h1>Welcome, <%= user.first_name %>!</h1>
+        <p class="dashboard-subtitle">You are logged into your personalized CSE 340 Service Network dashboard.</p>
+
+        <div class="user-details-card">
+            <h3>Your Account Details</h3>
+            <p><strong>Name:</strong> <%= user.first_name %> <%= user.last_name %></p>
+            <p><strong>Email (Username):</strong> <%= user.email %></p>
+            <p><strong>Access Level (Role):</strong> <span class="badge role-<%= user.role %>"><%= user.role %></span></p>
+        </div>
+
+        <% if (user.role === 'admin') { %>
+            <div class="admin-panel-card">
+                <h3>Admin Tools Panel</h3>
+                <p>As an administrator, you have permission to manage the system users database.</p>
+                <div class="action-buttons">
+                    <a href="/users" class="btn btn-primary">Manage Users Database</a>
+                </div>
+            </div>
+        <% } %>
+    </section>
+</main>
+<%- include('../partials/footer') %>

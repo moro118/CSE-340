@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS project_categories CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS projects CASCADE;
 DROP TABLE IF EXISTS organizations CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 -- Create organizations table
 CREATE TABLE organizations (
@@ -111,3 +112,18 @@ VALUES
 (2, 2), -- After-School Math Tutoring (Educational)
 (3, 3), -- Neighborhood Food Drive (Community Service)
 (4, 4); -- Senior Mobility Companionship (Health & Wellness)
+
+-- Create users table
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'user'
+);
+
+-- Seed user accounts: Admin test account
+INSERT INTO users (first_name, last_name, email, password, role)
+VALUES ('System', 'Admin', 'admin@example.com', '$2b$10$hm0BD.lU8re/nebUpPVaKuu3ylukswy.6KL65Miy48VM.GQX2H3vi', 'admin');
+
