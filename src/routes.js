@@ -1,4 +1,8 @@
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import db from './models/db.js';
 
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
@@ -8,7 +12,22 @@ import { showRegisterForm, processRegisterForm, showLoginForm, processLoginForm,
 import { testErrorPage } from './controllers/errors.js';
 import { requireLogin, requireRole } from './middleware/auth.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const router = express.Router();
+
+// Temporary route to run setup.sql on Render
+router.get('/run-db-setup', async (req, res) => {
+    try {
+        const sqlPath = path.join(__dirname, 'setup.sql');
+        const sql = fs.readFileSync(sqlPath, 'utf8');
+        await db.query(sql);
+        res.send('Database setup executed successfully! You can now delete this route.');
+    } catch (err) {
+        res.status(500).send('Database setup failed: ' + err.message);
+    }
+});
 
 router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
