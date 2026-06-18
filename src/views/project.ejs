@@ -26,6 +26,24 @@
             <p>📍 <strong>Location:</strong> <%= project.location %></p>
             <p>📅 <strong>Date:</strong> <%= new Date(project.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
         </div>
+
+        <% if (user) { %>
+            <div class="volunteer-section" style="margin-top: 1.5rem; padding: 1.25rem; border: 1px solid #dee2e6; border-radius: 8px; background-color: #f8f9fa;">
+                <% if (isVolunteering) { %>
+                    <p style="margin-bottom: 0.75rem; font-weight: 600; color: #2e7d32;">✅ You are volunteering for this project!</p>
+                    <form action="/unvolunteer/<%= project.project_id %>" method="POST">
+                        <input type="hidden" name="redirectTo" value="/project/<%= project.project_id %>">
+                        <button type="submit" class="btn btn-secondary">Remove Myself as Volunteer</button>
+                    </form>
+                <% } else { %>
+                    <p style="margin-bottom: 0.75rem;">Want to help out? Sign up to volunteer for this project.</p>
+                    <form action="/volunteer/<%= project.project_id %>" method="POST">
+                        <button type="submit" class="btn btn-primary">Volunteer for This Project</button>
+                    </form>
+                <% } %>
+            </div>
+        <% } %>
+
         <br>
         <a href="/projects" class="btn btn-secondary">Back to Upcoming Projects</a>
     </section>

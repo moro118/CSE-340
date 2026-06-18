@@ -1,4 +1,5 @@
 -- Drop tables if they exist to allow clean recreation
+DROP TABLE IF EXISTS project_volunteers CASCADE;
 DROP TABLE IF EXISTS project_categories CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS projects CASCADE;
@@ -127,3 +128,11 @@ CREATE TABLE users (
 INSERT INTO users (first_name, last_name, email, password, role)
 VALUES ('System', 'Admin', 'admin@example.com', '$2b$10$hm0BD.lU8re/nebUpPVaKuu3ylukswy.6KL65Miy48VM.GQX2H3vi', 'admin');
 
+-- Create project_volunteers junction table for many-to-many relationship
+-- between users and projects (a user can volunteer for many projects,
+-- a project can have many volunteers)
+CREATE TABLE project_volunteers (
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+    project_id INT REFERENCES projects(project_id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, project_id)
+);

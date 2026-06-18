@@ -11,6 +11,28 @@
             <p><strong>Access Level (Role):</strong> <span class="badge role-<%= user.role %>"><%= user.role %></span></p>
         </div>
 
+        <div class="user-details-card" style="margin-top: 1.5rem;">
+            <h3>My Volunteered Projects</h3>
+            <% if (volunteeredProjects && volunteeredProjects.length > 0) { %>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <% volunteeredProjects.forEach(project => { %>
+                        <li style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #dee2e6;">
+                            <div>
+                                <a href="/project/<%= project.project_id %>" style="font-weight: 600; text-decoration: none;"><%= project.title %></a>
+                                <span style="color: #6c757d; font-size: 0.875rem; margin-left: 0.5rem;">— <%= project.organization_name %></span>
+                            </div>
+                            <form action="/unvolunteer/<%= project.project_id %>" method="POST" style="margin: 0;">
+                                <input type="hidden" name="redirectTo" value="/dashboard">
+                                <button type="submit" class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.8rem;">Remove</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p style="color: #6c757d;">You haven't signed up to volunteer for any projects yet. <a href="/projects">Browse upcoming projects</a> to get started!</p>
+            <% } %>
+        </div>
+
         <% if (user.role === 'admin') { %>
             <div class="admin-panel-card">
                 <h3>Admin Tools Panel</h3>

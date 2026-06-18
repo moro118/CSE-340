@@ -114,7 +114,51 @@ const updateProject = async (projectId, title, description, location, date, orga
     return result.rows[0].project_id;
 };
 
+// Add a user as a volunteer for a project (ignore duplicate signups)
+const addVolunteer = async (userId, projectId) => {
+    const query = `
+        INSERT INTO project_volunteers (user_id, project_id)
+        VALUES ($1, $2)
+        ON CONFLICT (user_id, project_id) DO NOTHING;
+    `;
+    await db.query(query, [userId, projectId]);
+};
+
+// Remove a user from a project's volunteer list
+const removeVolunteer = async (userId, projectId) => {
+    const query = `
+        DELETE FROM project_volunteers
+        WHERE user_id = $1 AND project_id = $2;
+    `;
+    await db.query(query, [userId, projectId]);
+};
+
+// Check whether a specific user is already volunteering for a project
+const isUserVolunteering = async (userId, projectId) => {
+    const query = `
+        SELECT 1 FROM project_volunteers
+        WHERE user_id = $1 AND project_id = $2;
+    `;
+    const result = await db.query(query, [userId, projectId]);
+    return result.rows.length > 0;
+};
+
+// Retrieve all projects a user has volunteered for
+const getVolunteeredProjects = async (userId) => {
+    const query = `
+        SELECT p.project_id, p.title, p.description, p.location, p.date,
+               o.name AS organization_name
+        FROM project_volunteers pv
+        JOIN projects p ON pv.project_id = p.project_id
+        JOIN organizations o ON p.organization_id = o.organization_id
+        WHERE pv.user_id = $1
+        ORDER BY p.date ASC;
+    `;
+    const result = await db.query(query, [userId]);
+    return result.rows;
+};
+
 // Export the model functions
-export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, createProject, updateProject };
+export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, createProject, updateProject, addVolunteer, removeVolunteer, isUserVolunteering, getVolunteeredProjects };
 
 

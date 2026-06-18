@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { registerUser, getUserByEmail, getAllUsers } from '../models/account-model.js';
+import { getVolunteeredProjects } from '../models/projects.js';
 
 // Show register form view
 const showRegisterForm = async (req, res) => {
@@ -102,9 +103,14 @@ const processLogout = async (req, res) => {
 };
 
 // Show personalized dashboard view
-const showDashboard = async (req, res) => {
+const showDashboard = async (req, res, next) => {
     const title = 'Account Dashboard';
-    res.render('account/dashboard', { title });
+    try {
+        const volunteeredProjects = await getVolunteeredProjects(req.session.user.user_id);
+        res.render('account/dashboard', { title, volunteeredProjects });
+    } catch (error) {
+        next(error);
+    }
 };
 
 // Show registered users list (restricted to admins)

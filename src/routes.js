@@ -2,7 +2,7 @@ import express from 'express';
 
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, processVolunteerSignup, processVolunteerRemoval } from './controllers/projects.js';
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm, categoryValidation } from './controllers/categories.js';
 import { showRegisterForm, processRegisterForm, showLoginForm, processLoginForm, processLogout, showDashboard, showUsersPage } from './controllers/account.js';
 import { testErrorPage } from './controllers/errors.js';
@@ -53,6 +53,10 @@ router.post('/edit-project/:id', requireLogin, requireRole('admin'), projectVali
 
 // Route for project details page
 router.get('/project/:id', showProjectDetailsPage);
+
+// Volunteer routes — require login
+router.post('/volunteer/:projectId', requireLogin, processVolunteerSignup);
+router.post('/unvolunteer/:projectId', requireLogin, processVolunteerRemoval);
 
 // Routes to handle the assign categories to project form
 router.get('/assign-categories/:projectId', requireLogin, requireRole('admin'), showAssignCategoriesForm);
